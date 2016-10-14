@@ -1,0 +1,24 @@
+{
+  "name": "de.tammenit.sap.community.tags",
+  "version": "1.0.0",
+  "description": "SAP Community Tags",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "now": "now"
+  },
+  "keywords": [
+    "sap",
+    "tags",
+    "community"
+  ],
+  "author": "Helmut Tammen",
+  "license": "MIT",
+  "dependencies": {
+        "express": "4.13.4"
+  },
+  "devDependencies": {
+    "now": "^0.25.1"
+  }
+}

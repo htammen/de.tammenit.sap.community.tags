@@ -1,0 +1,21 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:l="sap.ui.layout" 
+    xmlns:core="sap.ui.core">
+    <Dialog title="About" type="message">
+        <content>
+            <l:VerticalLayout class="sapUiSmallMargin">
+                <Text text="This application offers the possibility to view and search for all tags of the new SAP Community. The data has been extracted from this Excel file"/>
+                <Link text="List of primary and secondary tags" href="http://sapassets.edgesuite.net/tools/SAP-Community-Tags.xlsx" target="_blank"/>
+                <Text text=""/>
+                <Text text="Author: Helmut Tammen"/>
+                <Link text="github UI5 profile" href="http://htammen.github.io" target="_blank"/>
+                <Link text="SAP Community" href="https://people.sap.com/helmut.tammen2" target="_blank"/>
+                <Link text="Homepage" href="http://tammen-it-solutions.de" target="_blank"/>
+            </l:VerticalLayout>
+        </content>
+        <beginButton>
+            <Button text="OK" press="onCloseDialog"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

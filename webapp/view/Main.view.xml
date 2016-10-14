@@ -1,0 +1,71 @@
+<mvc:View controllerName="de.tammenit.sap.community.tags.controller.Main" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar">
+
+	<semantic:FullscreenPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="false"
+		title="SAP Community Tag list">
+		<semantic:content>
+			<Table
+				id="table"
+				width="auto"
+				class="sapUiResponsiveMargin"
+				items="{
+						path: '/'
+					}"
+				growing="true"
+				growingScrollToLoad="true"
+				growingThreshold="20"
+				>
+
+				<headerToolbar>
+					<Toolbar id="toolbar">
+						<Title id="tableHeader" text="List of SAP Community tags"/>
+						<ToolbarSpacer />
+						<SearchField
+							id="searchField"
+							tooltip="Enter a string and press enter"
+							search="onFilter"
+							width="auto">
+						</SearchField>
+					</Toolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column id="areaColumn">
+						<Text text="Area" id="areaColumnTitle"/>
+					</Column>
+					<Column id="levelColumn">
+						<Text text="Level" id="levelColumnTitle"/>
+					</Column>
+					<Column id="tagColumn">
+						<Text text="Tag" id="tagColumnTitle"/>
+					</Column>
+					<Column id="noteColumn">
+						<Text text="Note" id="noteColumnTitle"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Inactive">
+						<cells>
+							<ObjectIdentifier title="{SAP Community Tags}"/>
+							<Text text="{field12}"/>
+							<Text text="{= ${field12} === '(top level)' ? '' : (${field12} === '(level 1)' ? ${field2} : (${field12} === '(level 2)' ? ${field3}:  ${field4}))}"/>
+							<Text text="{field13}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+
+			</Table>
+		</semantic:content>
+		<semantic:favoriteAction>
+			<semantic:FavoriteAction press="onSemanticFaboriteButtonPress"/>
+		</semantic:favoriteAction>		
+	</semantic:FullscreenPage>
+</mvc:View>
