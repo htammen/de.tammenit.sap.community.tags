@@ -56,7 +56,11 @@
 						<cells>
 							<ObjectIdentifier title="{SAP Community Tags}"/>
 							<Text text="{field12}"/>
-							<Text text="{= ${field12} === '(top level)' ? '' : (${field12} === '(level 1)' ? ${field2} : (${field12} === '(level 2)' ? ${field3}:  ${field4}))}"/>
+							<Link
+								visible="{= ${url} !== null }"
+								subtle="true" target="_blank" href="{url}" text="{= ${field12} === '(top level)' ? '' : (${field12} === '(level 1)' ? ${field2} : (${field12} === '(level 2)' ? ${field3}:  ${field4}))}" />
+							<Text visible="{= ${url} === null }"
+								text="{= ${field12} === '(top level)' ? '' : (${field12} === '(level 1)' ? ${field2} : (${field12} === '(level 2)' ? ${field3}:  ${field4}))}"/>
 							<Text text="{field13}"/>
 						</cells>
 					</ColumnListItem>
