@@ -25,6 +25,11 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
+			
+			this.oMessageProcessor = new sap.ui.core.message.ControlMessageProcessor();
+			var oMessageManager = sap.ui.getCore().getMessageManager();
+			oMessageManager.registerMessageProcessor(this.oMessageProcessor);
+	 			
 		},
 
 		/**

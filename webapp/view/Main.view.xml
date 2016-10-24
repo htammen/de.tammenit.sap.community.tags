@@ -55,15 +55,23 @@
 						type="Inactive">
 						<cells>
 							<ObjectIdentifier title="{SAP Community Tags}"/>
-							<Text text="{field12}"/>
-							<Text text="{= ${field12} === '(top level)' ? '' : (${field12} === '(level 1)' ? ${field2} : (${field12} === '(level 2)' ? ${field3}:  ${field4}))}"/>
-							<Text text="{field13}"/>
+							<Text text="{field8}"/>
+							<Link 
+								text="{parts: [ {path: 'field8'}, {path: 'field2'}, {path: 'field3'}, {path: 'field4'}, {path: 'field11'} ], formatter: '.formatter.formatTag'}" 
+								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREF'}" 
+								target="_blank"
+								tooltip="{field11}"
+							/>
+							<Text text="{field9}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
 
 			</Table>
 		</semantic:content>
+		<semantic:messagesIndicator>
+			<semantic:MessagesIndicator press="onMessagesButtonPress"/>
+		</semantic:messagesIndicator>
 		<semantic:favoriteAction>
 			<semantic:FavoriteAction press="onSemanticFaboriteButtonPress"/>
 		</semantic:favoriteAction>		

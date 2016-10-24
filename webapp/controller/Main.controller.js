@@ -3,11 +3,17 @@ sap.ui.define([
 	"sap/ui/model/json/JSONModel",
 	'sap/m/Dialog',
 	'sap/m/Button',
-	'sap/m/Text'
-], function (BaseController, JSONModel, Dialog, Button, Text) {
+	'sap/m/Text',
+	"de/tammenit/sap/community/tags/util/formatter",
+	'sap/m/MessagePopover',
+	'sap/m/MessagePopoverItem',
+	'sap/m/MessageToast'
+	], function (BaseController, JSONModel, Dialog, Button, Text, Formatter, MessagePopover, MessagePopoverItem, MessageToast) {
 	"use strict";
 
 	return BaseController.extend("de.tammenit.sap.community.tags.controller.Main", {
+		formatter: Formatter,
+		
 		onInit: function () {
 			var oModel = new JSONModel();
 			oModel.loadData('./model/tags.json');
@@ -31,6 +37,15 @@ sap.ui.define([
 				});
 				if (filteredJson.length > 0) {
 					oModel.setData(filteredJson);
+				} else {
+					sap.ui.getCore().getMessageManager().addMessages(
+						new sap.ui.core.message.Message({
+							message: "No tag found for search string '" + sQuery + "`",
+							type: sap.ui.core.MessageType.Error,
+							processor: this.getMessageProcessor()
+						})
+					);
+					MessageToast.show("No tag found for search string '" + sQuery + "`");
 				}
 			}
 		},
@@ -70,7 +85,35 @@ sap.ui.define([
 			}
 			return this._oDialog;
 		},
-
+		
+		onMessagesButtonPress: function(oEvent) {
+			var oMessagesButton = oEvent.getSource();
+			if (!this._messagePopover) {
+				this._messagePopover = new MessagePopover({
+					items: {
+						path: "message>/",
+						template: new MessagePopoverItem({
+							description: "{message>description}",
+							type: "{message>type}",
+							title: "{message>message}"
+						})
+					}
+				});
+				this._messagePopover.attachAfterClose(function(oEvt) {
+					sap.ui.getCore().getMessageManager().removeAllMessages();	
+				});
+				this._messagePopover.attachItemSelect(function(oEvt) {
+					var item = oEvt.getParameter("item");
+					this.removeItem(item);
+				});
+				oMessagesButton.addDependent(this._messagePopover);
+			}
+			this._messagePopover.toggle(oMessagesButton);
+		},
+		
+		onMessageItemSelected: function(oEvent) {
+			var source = oEvent.getSource();
+		}
 
 	});
 });

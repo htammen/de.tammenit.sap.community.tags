@@ -6,7 +6,8 @@
   "build": {
     "targetFolder": "dist",
     "sourceFolder": "webapp",
-    "buildRequired": true
+    "buildRequired": false,
+    "lastBuildDateTime": "Mon, 24 Oct 2016 11:22:35 GMT"
   },
   "generation": [
     {
@@ -33,5 +34,10 @@
     "notifyBeforePushLevel": "Error",
     "blockPush": false,
     "blockPushLevel": "Error"
+  },
+  "hcpdeploy": {
+    "account": "p001984trial",
+    "name": "detammenitsapcommunitytags",
+    "lastVersionWeTriedToDeploy": "1.0.1"
   }
 }
