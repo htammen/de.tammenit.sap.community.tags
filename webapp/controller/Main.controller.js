@@ -27,7 +27,14 @@ sap.ui.define([
 				oModel.loadData('./model/tags.json');
 			} else {
 				var regExp = new RegExp(".*" + sQuery + ".*", "i");
-				var json = oModel.getData();
+				var json;
+				// if current model data is already filtered reread complete data. Otherwise filter would have been
+				// applied to already filtered data
+				if(this._filteredData) {
+					oModel.loadData('./model/tags.json', null, false);
+				}
+				json = oModel.getData();
+				this._filteredData = false;
 				var filteredJson = json.filter(function (row) {
 					if (regExp.test(row.field2) || regExp.test(row.field3) || regExp.test(row.field4) || regExp.test(row.field5)) {
 						return true;
@@ -36,6 +43,7 @@ sap.ui.define([
 					}
 				});
 				if (filteredJson.length > 0) {
+					this._filteredData = true;
 					oModel.setData(filteredJson);
 				} else {
 					sap.ui.getCore().getMessageManager().addMessages(
