@@ -7,7 +7,7 @@
     "targetFolder": "dist",
     "sourceFolder": "webapp",
     "buildRequired": false,
-    "lastBuildDateTime": "Mon, 24 Oct 2016 13:25:00 GMT"
+    "lastBuildDateTime": "Wed, 26 Oct 2016 21:33:48 GMT"
   },
   "generation": [
     {
@@ -38,6 +38,6 @@
   "hcpdeploy": {
     "account": "p001984trial",
     "name": "detammenitsapcommunitytags",
-    "lastVersionWeTriedToDeploy": "1.0.2"
+    "lastVersionWeTriedToDeploy": "1.0.3"
   }
 }

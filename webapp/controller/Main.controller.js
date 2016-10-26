@@ -10,28 +10,44 @@ sap.ui.define([
 	'sap/m/MessageToast'
 	], function (BaseController, JSONModel, Dialog, Button, Text, Formatter, MessagePopover, MessagePopoverItem, MessageToast) {
 	"use strict";
+	
+	sap.ui.namespace("jQuery.sap.storage");
+	sap.ui.namespace("jQuery.sap.storage.Type");
 
 	return BaseController.extend("de.tammenit.sap.community.tags.controller.Main", {
 		formatter: Formatter,
 		
 		onInit: function () {
+			var componentName = this.getOwnerComponent().getManifestObject().getComponentName(); // sap.ui.core.Component.getOwnerComponentFor(this).getManifestObject().getComponentName();
+			var modulePath = jQuery.sap.getModulePath(componentName);
+			this._FileName = modulePath + "/model/tags.json";
 			var oModel = new JSONModel();
-			oModel.loadData('./model/tags.json');
+			oModel.loadData(this._FileName);
 			this.getView().setModel(oModel);
+			
+			/*
+			var storage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			storage.put("favorites", '{"favorites":[{"key": "eins", "tag", "eins"}, {"key": "zwei", "tag", "zwei"}]}');
+			var str = storage.get("favorites");
+			var json = JSON.parse(str);
+			
+			var oFavoriteModel = new JSONModel(json);
+			this.getView().setModel(oFavoriteModel, "favModel");
+			*/
 		},
 
 		onFilter: function (oEvent) {
 			var sQuery = oEvent.getParameter("query");
 			var oModel = this.getView().getModel();
 			if (sQuery === "") {
-				oModel.loadData('./model/tags.json');
+				oModel.loadData(this._FileName);
 			} else {
 				var regExp = new RegExp(".*" + sQuery + ".*", "i");
 				var json;
 				// if current model data is already filtered reread complete data. Otherwise filter would have been
 				// applied to already filtered data
 				if(this._filteredData) {
-					oModel.loadData('./model/tags.json', null, false);
+					oModel.loadData(this._FileName, null, false);
 				}
 				json = oModel.getData();
 				this._filteredData = false;
@@ -50,9 +66,16 @@ sap.ui.define([
 						new sap.ui.core.message.Message({
 							message: "No tag found for search string '" + sQuery + "`",
 							type: sap.ui.core.MessageType.Error,
+							target: "/searchField/value",
 							processor: this.getMessageProcessor()
 						})
 					);
+					// var msgStrip = new sap.m.MessageStrip({
+					// 	text: "No tag found for search string '" + sQuery + "`",
+					// 	showIcon: true,
+					// 	showCloseButton: true
+					// });
+					// this.getView().byId("toolbar").addContent(msgStrip);
 					MessageToast.show("No tag found for search string '" + sQuery + "`");
 				}
 			}

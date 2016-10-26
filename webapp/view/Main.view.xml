@@ -2,6 +2,7 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:semantic="sap.m.semantic"
+	xmlns:core="sap.ui.core"
 	xmlns:footerbar="sap.ushell.ui.footerbar">
 
 	<semantic:FullscreenPage
@@ -26,6 +27,13 @@
 					<Toolbar id="toolbar">
 						<Title id="tableHeader" text="List of SAP Community tags"/>
 						<ToolbarSpacer />
+						<!--
+						<Select
+							forceSelection="false"
+							items="{path: 'favModel>/favorites' }">
+								<core:Item key="{favModel>key}" text="{favModel>tag}" />
+						</Select>						
+						-->
 						<SearchField
 							id="searchField"
 							tooltip="Enter a string and press enter"

@@ -6,9 +6,27 @@ sap.ui.define([
 	"use strict";
 
 	return UIComponent.extend("de.tammenit.sap.community.tags.Component", {
-
+		// metadata is explained in document "SAP Fiori Launchpad for Developers - Architecture Overview.pdf"
 		metadata: {
-			manifest: "json"
+			manifest: "json",
+			name: "Sample Component", 
+			library : " mycompany.abc", 
+			includes : [
+				"css/style.css" 
+			],
+            dependencies : {
+            },
+            config : {
+				"resourceBundle" : "i18n/i18n.properties",
+				"titleResource" : "appTitle"
+				// The following properties reference dedicated image files. Note
+				// that relative links are always relative to the location of the
+				// Component.js of the app, NOT to the location of the HTML file that // is displayed in the web browser (typically: FioriLaunchpad.html). "favIcon" : "img/favicon.ico",
+				//"homeScreenIconPhone" : "img/57_iPhone_Desktop_Launch.png", 
+				//"homeScreenIconPhone@2" : "img/114_iPhone-Retina_Web_Clip.png ", 
+				//"homeScreenIconTablet" : "img/72_iPad_Desktop_Launch.png", 
+				//"homeScreenIconTablet@2" : "img/144_iPad_Retina_Web_Clip.png"
+			}
 		},
 
 		/**

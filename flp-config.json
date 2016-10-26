@@ -1,0 +1,35 @@
+{
+    "application": {
+        "id": "",
+        "title": "de.tammenit.sap.community.tags",
+        "description": "List of SAP Community tags",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#detammenitsapcommunitytags-Display",
+        "navigationComponentName": "de.tammenit.sap.community.tags",
+        "intentSemanticObject": "de.tammenit.sap.community.tags",
+        "intentAction": "Display",
+        "html5ApplicationName": "detammenitsapcommunitytags",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "50982fbf-c932-466e-b374-b1c61fc005b3-1455275094962"
+        ],
+        "contentPackages": [
+            "887d7766-81fc-4ec3-8732-f3717065d0fb-1426862737729"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "StaticTile",
+        "title": "SAP Community Tags",
+        "subtitle": "incl. links",
+        "searchKeywords": "SAP Community Tags,incl. links",
+        "displayIconUrl": "sap-icon://tags",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "",
+        "refreshInterval": ""
+    }
+}
