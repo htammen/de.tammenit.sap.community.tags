@@ -25,6 +25,11 @@ sap.ui.define([
 			oModel.loadData(this._FileName);
 			this.getView().setModel(oModel);
 			
+			var oViewModel = new JSONModel({
+				qrCode: window.location.href
+			});
+			this.getView().setModel(oViewModel, "viewModel");
+			
 			/*
 			var storage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			storage.put("favorites", '{"favorites":[{"key": "eins", "tag", "eins"}, {"key": "zwei", "tag", "zwei"}]}');
@@ -144,7 +149,26 @@ sap.ui.define([
 		
 		onMessageItemSelected: function(oEvent) {
 			var source = oEvent.getSource();
+		},
+		
+		/* =========== QR Code Dialog ================================ */
+		onQRCode: function(oEvent) {
+			this._getQRDialog().open();
+		},
+
+		_getQRDialog: function() {
+			if (!this._oQRDialog) {
+				this._oQRDialog = sap.ui.xmlfragment("de.tammenit.sap.community.tags.view.QRCodeDialog", this);
+				this.getView().addDependent(this._oQRDialog);
+			}
+			return this._oQRDialog;
+		},
+		
+		onDialogClose: function() {
+			this._getQRDialog().close();	
 		}
+		
+		
 
 	});
 });

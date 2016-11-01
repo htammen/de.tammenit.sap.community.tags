@@ -21,6 +21,7 @@
 				growing="true"
 				growingScrollToLoad="true"
 				growingThreshold="20"
+				visibleRowCount="7"
 				>
 
 				<headerToolbar>
@@ -44,16 +45,16 @@
 				</headerToolbar>
 
 				<columns>
-					<Column id="areaColumn">
+					<Column id="areaColumn" width="15%">
 						<Text text="Area" id="areaColumnTitle"/>
 					</Column>
-					<Column id="levelColumn">
+					<Column id="levelColumn" width="10%">
 						<Text text="Level" id="levelColumnTitle"/>
 					</Column>
-					<Column id="tagColumn">
+					<Column id="tagColumn" width="auto">
 						<Text text="Tag" id="tagColumnTitle"/>
 					</Column>
-					<Column id="noteColumn">
+					<Column id="noteColumn" width="15%">
 						<Text text="Note" id="noteColumnTitle"/>
 					</Column>
 				</columns>
@@ -83,5 +84,8 @@
 		<semantic:favoriteAction>
 			<semantic:FavoriteAction press="onSemanticFaboriteButtonPress"/>
 		</semantic:favoriteAction>		
+		<semantic:customShareMenuContent>
+			<Button text="QR Code" icon="sap-icon://bar-code" press="onQRCode"/>
+		</semantic:customShareMenuContent>
 	</semantic:FullscreenPage>
 </mvc:View>
