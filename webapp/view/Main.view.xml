@@ -21,7 +21,6 @@
 				growing="true"
 				growingScrollToLoad="true"
 				growingThreshold="20"
-				visibleRowCount="7"
 				>
 
 				<headerToolbar>
@@ -45,16 +44,22 @@
 				</headerToolbar>
 
 				<columns>
-					<Column id="areaColumn" width="15%">
+					<Column id="areaColumn" width="15%" minScreenWidth="Small" demandPopin="true">
 						<Text text="Area" id="areaColumnTitle"/>
-					</Column>
-					<Column id="levelColumn" width="10%">
-						<Text text="Level" id="levelColumnTitle"/>
 					</Column>
 					<Column id="tagColumn" width="auto">
 						<Text text="Tag" id="tagColumnTitle"/>
 					</Column>
-					<Column id="noteColumn" width="15%">
+					<Column id="answerColumn" width="10%" minScreenWidth="Small" demandPopin="true">
+						<Text text="Answers" id="answersColumnTitle"/>
+					</Column>
+					<Column id="blogColumn" width="10%" minScreenWidth="Small" demandPopin="true">
+						<Text text="Blogs" id="blogsColumnTitle"/>
+					</Column>
+					<Column id="unansweredColumn" width="10%" minScreenWidth="Small" demandPopin="true">
+						<Text text="Unanswered" id="undansweredColumnTitle"/>
+					</Column>
+					<Column id="noteColumn" width="15%" minScreenWidth="Small" demandPopin="true">
 						<Text text="Note" id="noteColumnTitle"/>
 					</Column>
 				</columns>
@@ -64,12 +69,29 @@
 						type="Inactive">
 						<cells>
 							<ObjectIdentifier title="{SAP Community Tags}"/>
-							<Text text="{field8}"/>
 							<Link 
 								text="{parts: [ {path: 'field8'}, {path: 'field2'}, {path: 'field3'}, {path: 'field4'}, {path: 'field11'} ], formatter: '.formatter.formatTag'}" 
 								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREF'}" 
 								target="_blank"
 								tooltip="{field11}"
+							/>
+							<Link 
+								text="{parts: [ {path: 'field11'}], formatter: '.formatter.formatLinkTextAnswers'}" 
+								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREFAnswers'}" 
+								target="_blank"
+								tooltip="Go to questions and answers of this tag"
+							/>
+							<Link 
+								text="{parts: [ {path: 'field11'}], formatter: '.formatter.formatLinkTextBlogs'}" 
+								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREFBlogs'}" 
+								target="_blank"
+								tooltip="Go to Blogs of this tag"
+							/>
+							<Link 
+								text="{parts: [ {path: 'field11'}], formatter: '.formatter.formatLinkTextUnanswered'}" 
+								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREFUnanswered'}" 
+								target="_blank"
+								tooltip="Go to unanswered questions of this tag"
 							/>
 							<Text text="{field9}"/>
 						</cells>
