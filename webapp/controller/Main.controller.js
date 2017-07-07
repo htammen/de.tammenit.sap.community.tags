@@ -54,10 +54,10 @@ sap.ui.define([
 				if(this._filteredData) {
 					oModel.loadData(this._FileName, null, false);
 				}
-				json = oModel.getData();
+				json = oModel.getData().tags;
 				this._filteredData = false;
 				var filteredJson = json.filter(function (row) {
-					if (regExp.test(row.field2) || regExp.test(row.field3) || regExp.test(row.field4) || regExp.test(row.field5)) {
+					if (regExp.test(row.name)) {
 						return true;
 					} else {
 						return false;
@@ -65,7 +65,9 @@ sap.ui.define([
 				});
 				if (filteredJson.length > 0) {
 					this._filteredData = true;
-					oModel.setData(filteredJson);
+					var modelData = {};
+					modelData.tags = filteredJson;
+					oModel.setData(modelData);
 				} else {
 					sap.ui.getCore().getMessageManager().addMessages(
 						new sap.ui.core.message.Message({

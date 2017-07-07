@@ -1,80 +1,96 @@
 sap.ui.define([], function() {
 	"use strict";
+	var _baseLink = "https://go.sap.com/community/tag.html";
 
 	return {
 
-		formatTag: function(level, tagL1, tagL2, tagL3, link) {
-			var retValue = "";
-			switch (level) {
-				case '(level 1)':
-					retValue = tagL1;
-					break;
-				case '(level 2)':
-					retValue = tagL2;
-					break;
-				case '(level 3)':
-					retValue = tagL3;
-					break;
-				default:
-			}
-			return retValue;
-		},
-		
-		formatHREF: function(link) {
-			if(link !== "" && link.startsWith("http")) {
-				return link;
+		formatTag: function(level, name) {
+			if(level === 1) {
+				return ""
 			} else {
-				return "";
+				return name;
 			}
 		},
 		
-		_formatLinkText: function(link, text) {
-			if(link !== "" && link.startsWith("http")) {
+		formatHREF: function(level, guid) {
+			if(level > 1) {
+				if(guid !== "") {
+					return _baseLink + "?id=" + guid;
+				} else {
+					return "";
+				}				
+
+			}
+		},
+		
+		/**
+		 * @private
+		 */
+		_formatLinkText: function(readOnly, text) {
+			if(!readOnly) {
 				return text;
 			} else {
 				return "";
 			} 
 		},
 		
-		formatLinkTextAnswers: function(link) {
-			return this.formatter._formatLinkText(link, 'Q&A');
+		formatLinkTextAnswers: function(readOnly) {
+			return this.formatter._formatLinkText(readOnly, 'Q&A');
 		},
-		formatLinkTextBlogs: function(link) {
-			return this.formatter._formatLinkText(link, 'Blogs');
+		formatLinkTextBlogs: function(readOnly) {
+			return this.formatter._formatLinkText(readOnly, 'Blogs');
 		},
-		formatLinkTextUnanswered: function(link) {
-			return this.formatter._formatLinkText(link, 'Unanswered');
+		formatLinkTextUnanswered: function(readOnly) {
+			return this.formatter._formatLinkText(readOnly, 'Unanswered');
 		},
 		
-		formatHREFAnswers: function(link) {
-			if(link !== "" && link.startsWith("http")) {
-				return "https://answers-qa.sap.com/tags/" + this.formatter._extractIdFromLink(link);
+		formatHREFAnswers: function(guid) {
+			if(guid !== "") {
+				return "https://answers.sap.com/tags/" + guid;
 			} else {
 				return "";
 			}
 		},
 
-		formatHREFBlogs: function(link) {
-			if(link !== "" && link.startsWith("http")) {
-				return "https://blogs-qa.sap.com/tags/" + this.formatter._extractIdFromLink(link);
+		formatHREFBlogs: function(guid) {
+			if(guid !== "") {
+				return "https://blogs.sap.com/tags/" + guid;
 			} else {
 				return "";
 			}
 		},
 
-		formatHREFUnanswered: function(link) {
-			if(link !== "" && link.startsWith("http")) {
-				return "https://answers-qa.sap.com/tags/" + this.formatter._extractIdFromLink(link) + "?sort=newest&filter=unanswered";
+		formatHREFUnanswered: function(guid) {
+			if(guid !== "") {
+				return "https://answers.sap.com/tags/" + guid + "?sort=newest&filter=unanswered";
 			} else {
 				return "";
 			}
 		},
 		
 		
-		_extractIdFromLink: function(link) {
+		__extractIdFromLink: function(link) {
 			var start = link.indexOf("id=") + 3;
 			var end = link.length;
 			return link.substring(start, end);
+		},
+
+		formatArea: function(level, name) {
+			if(level === 1) {
+				return name;
+			} else {
+				return "";
+			}
+		},
+
+		formatUsage: function(level, primaryTag) {
+			if(level === 1) return "";
+			
+			if(primaryTag) {
+				return "Primary"
+			} else {
+				return "Secondary"
+			}
 		}
 	};
 

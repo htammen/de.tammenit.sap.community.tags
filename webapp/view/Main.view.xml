@@ -16,7 +16,7 @@
 				width="auto"
 				class="sapUiResponsiveMargin"
 				items="{
-						path: '/'
+						path: '/tags'
 					}"
 				growing="true"
 				growingScrollToLoad="true"
@@ -50,17 +50,17 @@
 					<Column id="tagColumn" width="auto">
 						<Text text="Tag" id="tagColumnTitle"/>
 					</Column>
-					<Column id="answerColumn" width="10%" minScreenWidth="Small" demandPopin="true">
-						<Text text="Answers" id="answersColumnTitle"/>
-					</Column>
 					<Column id="blogColumn" width="10%" minScreenWidth="Small" demandPopin="true">
-						<Text text="Blogs" id="blogsColumnTitle"/>
+						<Text text="Blog Posts" id="blogsColumnTitle"/>
+					</Column>
+					<Column id="answerColumn" width="10%" minScreenWidth="Small" demandPopin="true">
+						<Text text="Questions" id="answersColumnTitle"/>
 					</Column>
 					<Column id="unansweredColumn" width="10%" minScreenWidth="Small" demandPopin="true">
-						<Text text="Unanswered" id="undansweredColumnTitle"/>
+						<Text text="Unanswered Questions" id="undansweredColumnTitle"/>
 					</Column>
 					<Column id="noteColumn" width="15%" minScreenWidth="Small" demandPopin="true">
-						<Text text="Note" id="noteColumnTitle"/>
+						<Text text="Usage" id="noteColumnTitle"/>
 					</Column>
 				</columns>
 
@@ -68,32 +68,32 @@
 					<ColumnListItem
 						type="Inactive">
 						<cells>
-							<ObjectIdentifier title="{SAP Community Tags}"/>
+							<ObjectIdentifier title="{parts: [ {path: 'level'}, {path: 'name'} ], formatter: '.formatter.formatArea'}"/>
 							<Link 
-								text="{parts: [ {path: 'field8'}, {path: 'field2'}, {path: 'field3'}, {path: 'field4'}, {path: 'field11'} ], formatter: '.formatter.formatTag'}" 
-								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREF'}" 
+								text="{parts: [ {path: 'level'}, {path: 'name'} ], formatter: '.formatter.formatTag'}" 
+								href="{parts: [ {path: 'level'}, {path: 'guid'} ], formatter: '.formatter.formatHREF'}" 
 								target="_blank"
-								tooltip="{field11}"
+								tooltip="{parts: [ {path: 'level'}, {path: 'guid'} ], formatter: '.formatter.formatHREF'}"
 							/>
 							<Link 
-								text="{parts: [ {path: 'field11'}], formatter: '.formatter.formatLinkTextAnswers'}" 
-								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREFAnswers'}" 
-								target="_blank"
-								tooltip="Go to questions and answers of this tag"
-							/>
-							<Link 
-								text="{parts: [ {path: 'field11'}], formatter: '.formatter.formatLinkTextBlogs'}" 
-								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREFBlogs'}" 
+								text="{parts: [ {path: 'read_only'}], formatter: '.formatter.formatLinkTextBlogs'}" 
+								href="{parts: [ {path: 'guid'} ], formatter: '.formatter.formatHREFBlogs'}" 
 								target="_blank"
 								tooltip="Go to Blogs of this tag"
 							/>
 							<Link 
-								text="{parts: [ {path: 'field11'}], formatter: '.formatter.formatLinkTextUnanswered'}" 
-								href="{parts: [ {path: 'field11'} ], formatter: '.formatter.formatHREFUnanswered'}" 
+								text="{parts: [ {path: 'read_only'}], formatter: '.formatter.formatLinkTextAnswers'}" 
+								href="{parts: [ {path: 'guid'} ], formatter: '.formatter.formatHREFAnswers'}" 
+								target="_blank"
+								tooltip="Go to questions and answers of this tag"
+							/>
+							<Link 
+								text="{parts: [ {path: 'read_only'}], formatter: '.formatter.formatLinkTextUnanswered'}" 
+								href="{parts: [ {path: 'guid'} ], formatter: '.formatter.formatHREFUnanswered'}" 
 								target="_blank"
 								tooltip="Go to unanswered questions of this tag"
 							/>
-							<Text text="{field9}"/>
+							<Text text="{parts: [ {path: 'level'}, {path: 'primary_tag'}], formatter: '.formatter.formatUsage'}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
