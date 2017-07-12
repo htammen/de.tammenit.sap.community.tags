@@ -8,6 +8,10 @@ sap.ui.define([
 	return UIComponent.extend("de.tammenit.sap.community.tags.Component", {
 		// metadata is explained in document "SAP Fiori Launchpad for Developers - Architecture Overview.pdf"
 		metadata: {
+			manifest: "json"
+		},
+		/*
+		metadata: {
 			manifest: "json",
 			name: "Sample Component", 
 			library : " mycompany.abc", 
@@ -28,6 +32,7 @@ sap.ui.define([
 				//"homeScreenIconTablet@2" : "img/144_iPad_Retina_Web_Clip.png"
 			}
 		},
+		*/
 
 		/**
 		 * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.

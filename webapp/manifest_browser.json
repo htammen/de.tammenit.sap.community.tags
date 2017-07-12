@@ -1,0 +1,7 @@
+{
+  "name": "Community Tag Browser",
+  "short_name": "Community Tag Browser",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}

@@ -19,6 +19,14 @@
         "entryPath": "/test-resources"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/destinations/community_tags/",
+      "target": {
+        "type": "destination",
+        "name": "community_tags"
+      },
+      "description": "SAP community tags"
     }
   ],
   "sendWelcomeFileRedirect": true,

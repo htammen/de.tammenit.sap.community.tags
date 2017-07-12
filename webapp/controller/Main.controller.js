@@ -18,13 +18,13 @@ sap.ui.define([
 		formatter: Formatter,
 		
 		onInit: function () {
-			var componentName = this.getOwnerComponent().getManifestObject().getComponentName(); // sap.ui.core.Component.getOwnerComponentFor(this).getManifestObject().getComponentName();
-			var modulePath = jQuery.sap.getModulePath(componentName);
-			this._FileName = modulePath + "/model/tags.json";
-			var oModel = new JSONModel();
-			oModel.loadData(this._FileName);
-			this.getView().setModel(oModel);
-			
+			//var componentName = this.getOwnerComponent().getManifestObject().getComponentName(); // sap.ui.core.Component.getOwnerComponentFor(this).getManifestObject().getComponentName();
+			//var modulePath = jQuery.sap.getModulePath(componentName);
+			//this._FileName = modulePath + "/model/tags.json";
+			//var oModel = new JSONModel();
+			//oModel.loadData(this._FileName);
+			//this.getView().setModel(oModel);
+
 			var oViewModel = new JSONModel({
 				qrCode: window.location.href
 			});
