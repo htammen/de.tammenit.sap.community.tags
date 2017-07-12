@@ -49,15 +49,22 @@ sap.ui.define([
 		onFilter: function (oEvent) {
 			var sQuery = oEvent.getParameter("query");
 			var oModel = this.getView().getModel();
+			// remember the original model data the first time filter is invoced
+			if(!this._originalModelData) {
+				this._originalModelData = oModel.getData();
+			}
+			
 			if (sQuery === "") {
-				oModel.loadData(this._FileName);
+				oModel.setData(this._originalModelData);
+				//oModel.loadData(this._FileName);
 			} else {
 				var regExp = new RegExp(".*" + sQuery + ".*", "i");
 				var json;
 				// if current model data is already filtered reread complete data. Otherwise filter would have been
 				// applied to already filtered data
 				if(this._filteredData) {
-					oModel.loadData(this._FileName, null, false);
+					oModel.setData(this._originalModelData);
+					//oModel.loadData(this._FileName, null, false);
 				}
 				json = oModel.getData().tags;
 				this._filteredData = false;
