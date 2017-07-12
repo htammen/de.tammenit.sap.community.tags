@@ -10,6 +10,26 @@
 		navButtonPress="onNavBack"
 		showNavButton="false"
 		title="SAP Community Tag list">
+		<semantic:subHeader>
+			<Toolbar id="toolbar">
+				<Title id="tableHeader" text="List of SAP Community tags"/>
+				<core:Icon src="sap-icon://display-more" tooltip="Show Tags at 'Browse Community'" press="onDisplayTagsOnWebsite"/>
+				<ToolbarSpacer />
+				<!--
+				<Select
+					forceSelection="false"
+					items="{path: 'favModel>/favorites' }">
+						<core:Item key="{favModel>key}" text="{favModel>tag}" />
+				</Select>						
+				-->
+				<SearchField
+					id="searchField"
+					tooltip="Enter a string and press enter"
+					search="onFilter"
+					width="auto">
+				</SearchField>
+			</Toolbar>
+		</semantic:subHeader>
 		<semantic:content>
 			<Table
 				id="table"
@@ -21,28 +41,9 @@
 				growing="true"
 				growingScrollToLoad="true"
 				growingThreshold="20"
+				fixedLayout="false"
+				showSeparators="Inner"
 				>
-
-				<headerToolbar>
-					<Toolbar id="toolbar">
-						<Title id="tableHeader" text="List of SAP Community tags"/>
-						<ToolbarSpacer />
-						<!--
-						<Select
-							forceSelection="false"
-							items="{path: 'favModel>/favorites' }">
-								<core:Item key="{favModel>key}" text="{favModel>tag}" />
-						</Select>						
-						-->
-						<SearchField
-							id="searchField"
-							tooltip="Enter a string and press enter"
-							search="onFilter"
-							width="auto">
-						</SearchField>
-					</Toolbar>
-				</headerToolbar>
-
 				<columns>
 					<Column id="areaColumn" width="15%" minScreenWidth="Small" demandPopin="true">
 						<Text text="Area" id="areaColumnTitle"/>
@@ -50,16 +51,16 @@
 					<Column id="tagColumn" width="auto">
 						<Text text="Tag" id="tagColumnTitle"/>
 					</Column>
-					<Column id="blogColumn" width="10%" minScreenWidth="Small" demandPopin="true">
+					<Column id="blogColumn" width="7%" minScreenWidth="Small" demandPopin="true">
 						<Text text="Blog Posts" id="blogsColumnTitle"/>
 					</Column>
-					<Column id="answerColumn" width="10%" minScreenWidth="Small" demandPopin="true">
+					<Column id="answerColumn" width="7%" minScreenWidth="Small" demandPopin="true">
 						<Text text="Questions" id="answersColumnTitle"/>
 					</Column>
-					<Column id="unansweredColumn" width="10%" minScreenWidth="Small" demandPopin="true">
+					<Column id="unansweredColumn" width="7%" minScreenWidth="Small" demandPopin="true">
 						<Text text="Unanswered Questions" id="undansweredColumnTitle"/>
 					</Column>
-					<Column id="noteColumn" width="15%" minScreenWidth="Small" demandPopin="true">
+					<Column id="noteColumn" width="10%" minScreenWidth="Desktop">
 						<Text text="Usage" id="noteColumnTitle"/>
 					</Column>
 				</columns>
@@ -74,6 +75,7 @@
 								href="{parts: [ {path: 'level'}, {path: 'guid'} ], formatter: '.formatter.formatHREF'}" 
 								target="_blank"
 								tooltip="{parts: [ {path: 'level'}, {path: 'guid'} ], formatter: '.formatter.formatHREF'}"
+								wrapping="true"
 							/>
 							<Link 
 								text="{parts: [ {path: 'read_only'}], formatter: '.formatter.formatLinkTextBlogs'}" 

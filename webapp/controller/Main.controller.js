@@ -30,6 +30,11 @@ sap.ui.define([
 			});
 			this.getView().setModel(oViewModel, "viewModel");
 			
+			var oRouter = this.getRouter();
+			oRouter.getRoute("main").attachPatternMatched(function() {
+				this.byId("searchField").focus();
+			}, this);
+
 			/*
 			var storage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 			storage.put("favorites", '{"favorites":[{"key": "eins", "tag", "eins"}, {"key": "zwei", "tag", "zwei"}]}');
@@ -168,6 +173,10 @@ sap.ui.define([
 		
 		onDialogClose: function() {
 			this._getQRDialog().close();	
+		},
+		
+		onDisplayTagsOnWebsite: function() {
+			window.open("https://www.sap.com/community/topic.html", "_blank");
 		}
 		
 		
